@@ -9,5 +9,4 @@ To see an example implementation of how to use `react-native-google-recaptcha-pr
 
 ## Screenshots
 
-<img src="../screenshot/1.png" alt="1" width="300"/>
-<img src="../screenshot/2.png" alt="1" width="300"/>
+<img src="../screenshot/1.jpeg" alt="1" width="600"/>
