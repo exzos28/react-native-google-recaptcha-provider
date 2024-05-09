@@ -1,31 +1,42 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-google-recaptcha-provider';
+import { StyleSheet, Button, Alert } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { RecaptchaModal } from './ModalExample';
 
-export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
+export default function Root() {
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <SafeAreaProvider style={styles.root}>
+      <App />
+    </SafeAreaProvider>
+  );
+}
+
+function App() {
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+  return (
+    <SafeAreaView style={styles.container}>
+      <Button title="Open modal" onPress={() => setModalIsVisible(true)} />
+      {modalIsVisible && (
+        <RecaptchaModal
+          onClose={() => setModalIsVisible(false)}
+          onVerify={(_) => {
+            setModalIsVisible(false);
+            Alert.alert('Token', _);
+          }}
+        />
+      )}
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+  },
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+    alignItems: 'center',
   },
 });
