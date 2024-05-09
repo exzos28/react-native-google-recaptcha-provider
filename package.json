@@ -1,6 +1,6 @@
 {
   "name": "react-native-google-recaptcha-provider",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Google reCAPTCHA provider for react native (android & iOS) projects",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
